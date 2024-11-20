@@ -1,4 +1,11 @@
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
 type CallbackFunc<T extends unknown[]> = (...args: T) => void
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 
 export function getCurrentDate() {
   const date = new Date()
