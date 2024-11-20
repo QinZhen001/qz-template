@@ -1,18 +1,18 @@
-# vue3 template
+# nextjs template
 
-- vue3
-- vueuse
-- pinia
-- naive-ui
+- react
+  - react-router
+- redux
+  - react-redux
+  - reduxjs/toolkit
+- nextjs
+- radix-ui
 
 ---
 
 - pnpm
-- vite
-  - vite-plugin-vue-devtools
 - eslint
-  - antfu/eslint-config
-- vue-tsc
+  - eslint-config-next
 - vitest
 - changelog
 - postcss

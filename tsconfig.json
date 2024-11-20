@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "incremental": true,
     "target": "ESNext",
     "jsx": "preserve",
     "lib": [
@@ -16,18 +17,30 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client",
-      "node",
-      "naive-ui/volar"
+      "node"
     ],
+    "allowJs": true,
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": [
     "node_modules",
     "dist",
