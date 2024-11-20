@@ -1,4 +1,6 @@
-import '@/styles/global.less'
+import '@/styles/variable.css'
+import '@/styles/tailwind.css'
+import '@/styles/global.css'
 
 /** Tailwind's Preflight Style Override */
 function naiveStyleOverride() {
@@ -7,8 +9,6 @@ function naiveStyleOverride() {
   document.head.appendChild(meta)
 }
 
-function setupAssets() {
+export function setupCSSAssets() {
   naiveStyleOverride()
 }
-
-export default setupAssets

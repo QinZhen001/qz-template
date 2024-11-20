@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import HomeLayout from '@/views/home/index.vue'
+import RootLayout from '@/views/root/index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { setupPageGuard } from './permission'
 
@@ -8,13 +8,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
-    component: HomeLayout,
-  },
-
-  {
-    path: '/test',
-    name: 'test',
-    component: () => import('@/views/test/index.vue'),
+    component: RootLayout,
   },
 
   {

@@ -1,39 +1,46 @@
+import type { Theme } from '@/types'
 import type { GlobalThemeOverrides } from 'naive-ui'
 import { useAppStore } from '@/store'
-import { darkTheme, useOsTheme } from 'naive-ui'
+import { darkTheme, lightTheme, useOsTheme } from 'naive-ui'
 import { computed, watch } from 'vue'
 
 export function useTheme() {
   const appStore = useAppStore()
-  const OsTheme = useOsTheme()
-
-  const isDark = computed(() => {
-    if (appStore.theme === 'auto')
-      return OsTheme.value === 'dark'
-    else
-      return appStore.theme === 'dark'
-  })
 
   const theme = computed(() => {
-    return isDark.value ? darkTheme : undefined
+    return appStore.theme === 'dark' ? darkTheme : lightTheme
   })
 
+  const lightThemeOverrides: GlobalThemeOverrides = {
+    common: {
+    },
+    // ...
+  }
+
+  const darkThemeOverrides: GlobalThemeOverrides = {
+    common: {
+    },
+    // ...
+  }
+
   const themeOverrides = computed<GlobalThemeOverrides>(() => {
-    if (isDark.value) {
-      return {
-        common: {},
-      }
+    if (appStore.theme === 'dark') {
+      return darkThemeOverrides
     }
-    return {}
+    else {
+      return lightThemeOverrides
+    }
   })
 
   watch(
-    () => isDark.value,
-    (dark) => {
-      if (dark)
+    () => appStore.theme,
+    (theme) => {
+      if (theme === 'dark') {
         document.documentElement.classList.add('dark')
-      else
+      }
+      else {
         document.documentElement.classList.remove('dark')
+      }
     },
     { immediate: true },
   )

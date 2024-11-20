@@ -1,4 +1,5 @@
-import type { AppState, Language, Theme } from './helper'
+import type { Language, Theme } from '@/types'
+import type { AppState } from './helper'
 import { store } from '@/store/helper'
 import { defineStore } from 'pinia'
 import { getLocalSetting, setLocalSetting } from './helper'

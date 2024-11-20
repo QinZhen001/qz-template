@@ -1,9 +1,8 @@
+import type { Language, Theme } from '@/types'
 import { ss } from '@/utils/storage'
+import { useOsTheme } from 'naive-ui'
 
 const LOCAL_NAME = 'appSetting'
-
-export type Theme = 'light' | 'dark' | 'auto'
-export type Language = 'en-US' | 'zh-CN'
 
 const languageMap: { [key: string]: Language } = {
   'en': 'en-US',
@@ -18,9 +17,12 @@ export interface AppState {
 }
 
 export function defaultSetting(): AppState {
-  const language = languageMap[navigator.language]
+  const language = languageMap[navigator.language] ?? 'zh-CN'
+  const osTheme = useOsTheme()
+  const theme = osTheme.value ?? 'light'
+
   return {
-    theme: 'light',
+    theme,
     language,
   }
 }

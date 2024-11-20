@@ -1,3 +1,5 @@
+type CallbackFunc<T extends unknown[]> = (...args: T) => void
+
 export function getCurrentDate() {
   const date = new Date()
   const day = date.getDate()
@@ -12,19 +14,6 @@ export function getRandomInt(min: number = 0, max: number = 1000) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export function getRandomTitle(length: number = 5) {
-  return (
-    `title_${
-      Math.random()
-        .toString(36)
-        .substring(2, length + 2)}`
-  )
-}
-
-export function getRandomBoolean() {
-  return Math.random() < 0.5
-}
-
 export function genUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0
@@ -33,13 +22,19 @@ export function genUUID() {
   })
 }
 
-export function formatTimestamp(timestamp: number) {
-  const date = new Date(timestamp * 1000)
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0') // 月份从0开始，所以要加1
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
+export function debounce<T extends unknown[]>(
+  func: CallbackFunc<T>,
+  wait: number,
+): (...args: T) => void {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined
 
-  return `${year}-${month}-${day} ${hours}:${minutes}`
+  return (...args: T) => {
+    const later = () => {
+      clearTimeout(timeoutId)
+      func(...args)
+    }
+
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(later, wait)
+  }
 }
