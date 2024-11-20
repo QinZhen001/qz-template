@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* light css */
+    --background: blue;
+  }
+
+  .dark {
+    /* dark css */
+    --background: red;
+  }
+}
