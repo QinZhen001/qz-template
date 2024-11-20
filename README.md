@@ -14,6 +14,7 @@
   - antfu/eslint-config
 - vue-tsc
 - vitest
+- changelog
 - postcss
   - autoprefixer
   - tailwindcss
