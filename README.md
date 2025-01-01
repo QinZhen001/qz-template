@@ -1,12 +1,8 @@
-# nextjs template
+# nextjs-H5 template
 
 - react
   - react-router
-- redux
-  - react-redux
-  - reduxjs/toolkit
 - nextjs
-- radix-ui
 
 ---
 
